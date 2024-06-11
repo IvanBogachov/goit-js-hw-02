@@ -1,17 +1,27 @@
-function getElementWidth(content, padding, border) {
-  let contentWidth = Number.parseFloat(content);
-  let paddingWidth = Number.parseFloat(padding);
-  let bordertWidth = Number.parseFloat(border);
-
-  // console.log(contentWidth);
-  // console.log(paddingWidth);
-  // console.log(bordertWidth);
-
-  let totalWidth = contentWidth + paddingWidth * 2 + bordertWidth * 2;
-
-  return totalWidth;
+function getShippingCost(country) { 
+  const toLowCountry = country.toLowerCase();
+  let price;
+  switch (toLowCountry) {
+    case "China".toLowerCase():
+      price = 100;
+      break;
+    case "Chile".toLowerCase():
+      price = 250;
+      break;
+    case "Australia".toLowerCase():
+      price = 170;
+      break;
+    case "Jamaica".toLowerCase():
+      price = 120;
+      break;
+    default:
+      return `Sorry, there is no delivery to your country`;
+  }
+  return `Shipping to ${country} will cost ${price} credits`;
 }
-
-console.log(getElementWidth("50px", "8px", "4px")); // 74
-console.log(getElementWidth("60px", "12px", "8.5px")); // 101
-console.log(getElementWidth("200px", "0px", "0px")); // 200
+console.log(getShippingCost("Australia")); // "Shipping to Australia will cost 170 credits"
+console.log(getShippingCost("Germany")); // "Sorry, there is no delivery to your country"
+console.log(getShippingCost("China")); // "Shipping to China will cost 100 credits"
+console.log(getShippingCost("Chile")); // "Shipping to Chile will cost 250 credits"
+console.log(getShippingCost("Jamaica")); // "Shipping to Jamaica will cost 120 credits"
+console.log(getShippingCost("Sweden")); // "Sorry, there is no delivery to your country"
